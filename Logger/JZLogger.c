@@ -47,7 +47,7 @@ void JZSetLoggerOutPutStatue(int toConsole, int toFile)
 	mJZLogIsToFile 	= toFile;	
 }
 
-void JZsetLogFileName(const char* filename)
+void JZSetLogFileName(const char* filename)
 {
 	int fileNameLen = strlen(filename);
 	mJZLoggerFilePath = (char*)malloc(fileNameLen * sizeof(char));
