@@ -15,8 +15,8 @@ OBJS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(SOURCES)))
 $TARGET:$(OBJS)
 	$(AR) -r $(TARGET) $(OBJS) 
 
-test:$(TARGET) libTest.c
-	gcc libTest.c $(TARGET) $(INCLUDE_FLAGS) -o tester
+test:$(TARGET) libTest.cpp
+	clang++ libTest.cpp $(TARGET) $(INCLUDE_FLAGS) -o tester
 
 clean:
 	rm $(TARGET)
