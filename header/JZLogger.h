@@ -1,5 +1,5 @@
-#ifndef __logger_h__
-#define __logger_h__
+#ifndef __JZLOGGER_H__
+#define __JZLOGGER_H__
 
 //use JZ as prefix
 #include <stdio.h>
