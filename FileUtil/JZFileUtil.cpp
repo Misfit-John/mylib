@@ -14,6 +14,10 @@ string JZGetCurrentWorkingPath()
 
 string JZGetAbsolutePath(const char* toResolvePath)
 {
+	if(NULL == toResolvePath)
+	{
+		return "";
+	}
 	char buff[512] = {0};
 	string ret = "";
 	realpath(toResolvePath, buff);
@@ -23,6 +27,10 @@ string JZGetAbsolutePath(const char* toResolvePath)
 
 string JZTryToSearchFileUntilRoot(const char* searchBeginPath, const char* fileName)
 {
+	if(NULL == searchBeginPath || NULL fileName)
+	{
+		return "";
+	}
 	string initPath = JZGetAbsolutePath(searchBeginPath);
 	string curPath = initPath;
 	string parentPath = curPath + "/../";
