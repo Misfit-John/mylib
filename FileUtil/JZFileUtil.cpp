@@ -1,4 +1,5 @@
 #include "JZFileUtil.h"
+#include "JZCommonDefine.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -27,7 +28,7 @@ string JZGetAbsolutePath(const char* toResolvePath)
 
 string JZTryToSearchFileUntilRoot(const char* searchBeginPath, const char* fileName)
 {
-	if(NULL == searchBeginPath || NULL fileName)
+	if(NULL == searchBeginPath || NULL == fileName)
 	{
 		return "";
 	}
@@ -47,4 +48,15 @@ string JZTryToSearchFileUntilRoot(const char* searchBeginPath, const char* fileN
 		parentPath = JZGetAbsolutePath(parentPath.c_str());
 	}while(parentPath != curPath);
 	return "";
+}
+
+string JZGetFileDirectory(const char* fileFullPath)
+{
+	string path(fileFullPath);
+	int lastSeperator = path.find_last_of(DIR_SEPERATOR);
+	if (string::npos == lastSeperator) {
+		return "";
+	}
+	string ret = path.substr(0, lastSeperator);
+	return ret;
 }

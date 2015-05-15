@@ -1,7 +1,8 @@
 CC=clang
 CPPCC=clang++
 AR=ar
-INCLUDE_FLAGS=-I./header
+PLATFOR_FLAG=-D_LINUX_
+INCLUDE_FLAGS=-I./header $(PLATFOR_FLAG)
 TARGET=mylib.a
 
 %.o: %.c
