@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
+#include <stdio.h>
 
 string JZGetCurrentWorkingPath()
 {
@@ -58,5 +60,27 @@ string JZGetFileDirectory(const char* fileFullPath)
 		return "";
 	}
 	string ret = path.substr(0, lastSeperator);
+	return ret;
+}
+
+unsigned char* getFileData(const char* fileFullPath)
+{
+	//this func only useful for linux,os x, window,ios
+	//but android system will fail to read assets' file,
+	//android's assets' file is zip file,that is a hard work,
+	//libz is needed.
+	
+	FILE* filePtr = fopen(fileFullPath, "rb");
+	uint64 fileSize = 0;
+	if (NULL == filePtr) {
+		return NULL;
+	}
+	fseek(filePtr, 0, SEEK_END);
+	fileSize = ftell(filePtr);
+	fseek(filePtr, 0, SEEK_SET);
+	unsigned char *ret = (unsigned char*)malloc(fileSize * sizeof(char) + 1);
+
+	fread(ret, 1, fileSize, filePtr);
+	fclose(filePtr);
 	return ret;
 }

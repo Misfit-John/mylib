@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <set>
+#include <stack>
 
 typedef int int32;
 typedef unsigned char uint8;
@@ -20,13 +21,16 @@ typedef std::vector<std::string> StringList;
 typedef std::vector<int> IntList;
 typedef std::set<std::string> StringSet;
 typedef std::set<int> IntSet;
-
+typedef std::stack<std::string> StringStack;
+typedef std::stack<int> IntStack;
 //marco define begins here
 //
 #ifdef _LINUX_
 	#define DIR_SEPERATOR "/"
+	#define ENV_sEPERATOR ";"
 #elif defined(_WIN_)
 	#define DIR_SEPERATOR "\"	
+	#define ENV_sEPERATOR ":"
 #endif
 
 #endif //__JZ_COMMON_DEFINE_H__

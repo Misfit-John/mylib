@@ -8,4 +8,7 @@ string JZGetCurrentWorkingPath();
 string JZGetAbsolutePath(const char* toResolvePath);
 string JZTryToSearchFileUntilRoot(const char* searchBeginPath, const char* fileName);
 string JZGetFileDirectory(const char* fileFullPath);
+
+//please remember to release the returned ptr by yourself
+unsigned char* getFileData(const char* fileFullPath);
 #endif //__JZ_FILE_UTIL_H__
