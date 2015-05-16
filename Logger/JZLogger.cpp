@@ -49,6 +49,9 @@ void JZSetLoggerOutPutStatue(int toConsole, int toFile)
 
 void JZSetLogFileName(const char* filename)
 {
+	if (NULL == filename) {
+		return;
+	}
 	int fileNameLen = strlen(filename);
 	mJZLoggerFilePath = (char*)malloc(fileNameLen * sizeof(char));
 	strncpy(mJZLoggerFilePath, filename, fileNameLen);
@@ -58,6 +61,9 @@ void JZSetLogFileName(const char* filename)
 
 void JZWriteLog(const char* log)
 {
+	if (NULL == log) {
+		return;
+	}
 	if(1 == mJZLogIsToConsel)
 	{
 		fprintf(stdout,"%s", log);
