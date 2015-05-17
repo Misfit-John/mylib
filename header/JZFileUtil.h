@@ -10,5 +10,5 @@ string JZTryToSearchFileUntilRoot(const char* searchBeginPath, const char* fileN
 string JZGetFileDirectory(const char* fileFullPath);
 
 //please remember to release the returned ptr by yourself
-unsigned char* getFileData(const char* fileFullPath);
+unsigned char* JZGetFileData(const char* fileFullPath);
 #endif //__JZ_FILE_UTIL_H__

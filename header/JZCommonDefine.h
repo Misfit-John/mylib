@@ -27,10 +27,10 @@ typedef std::stack<int> IntStack;
 //
 #ifdef _LINUX_
 	#define DIR_SEPERATOR "/"
-	#define ENV_sEPERATOR ";"
+	#define ENV_SEPERATOR ";"
 #elif defined(_WIN_)
 	#define DIR_SEPERATOR "\"	
-	#define ENV_sEPERATOR ":"
+	#define ENV_SEPERATOR ":"
 #endif
 
 #endif //__JZ_COMMON_DEFINE_H__

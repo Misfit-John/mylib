@@ -63,7 +63,7 @@ string JZGetFileDirectory(const char* fileFullPath)
 	return ret;
 }
 
-unsigned char* getFileData(const char* fileFullPath)
+unsigned char* JZGetFileData(const char* fileFullPath)
 {
 	//this func only useful for linux,os x, window,ios
 	//but android system will fail to read assets' file,
