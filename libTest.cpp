@@ -46,12 +46,17 @@ public:
 
 int main(int argc,char* argv[])
 {
+	char a = 'a';
 	JZLoggerInit();
 	JZSetLoggerLevel(JZ_LOG_ALL);
 	JZSetLoggerOutPutStatue(1,1);
 	JZSetLogFileName("testLog");
 	myCmdParm parm;
 	parm.analyze(argc, argv);
+	JZWRITE_DEBUG("hello//abce at line : %d\n \
+					this is add on %c",\
+			__LINE__ == 1, 'a');
+	JZWRITE_DEBUG("hello");
 }
 
 

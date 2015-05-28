@@ -84,3 +84,16 @@ unsigned char* JZGetFileData(const char* fileFullPath)
 	fclose(filePtr);
 	return ret;
 }
+
+bool JZFileAccessable(const char* filePath)
+{
+	if(0 == access(filePath, F_OK))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
