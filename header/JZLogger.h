@@ -1,3 +1,13 @@
+/*********************************************************
+	This logger use printf as the root printer.
+    There might be some problem if the input is too long.
+
+	You may recevie segment fault 11 if the input is too long
+ 	and it will be ok if you seperate the input into multiple
+	line
+ ********************************************************/
+
+
 #ifndef __JZLOGGER_H__
 #define __JZLOGGER_H__
 
@@ -64,7 +74,7 @@ void JZWriteLog(const char* log);
 			JZWriteLog(log);		\
 		}		\
 }
-#else
+#else	//DEBUG
 
 #define JZWRITE_DEBUG {do{}while(0);}
 #define JZFUNC_BEGIN_LOG() {do{}while(0);}

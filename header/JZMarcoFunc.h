@@ -3,7 +3,7 @@
 
 #include "JZLogger.h"
 
-#define JZSAFE_DELETE(ptr) {if(ptr != NULL){delete ptr;}}
+#define JZSAFE_DELETE(ptr) {if(ptr != NULL){delete ptr; ptr = NULL;}}
 #define JZIF_NULL_RETURN(ptr, args...) {if(NULL == ptr){JZWRITE_ERROR("%s",#ptr" is NULL ! Now return.");return args;}}
 
 #endif /* end of include guard: JZMARCOFUNC_H */

@@ -5,6 +5,14 @@
 #include <sstream>
 using namespace std;
 
+struct mapStr
+{
+	int a;
+	int b;
+	int c;
+	int d;
+	int e;
+};
 class myCmdParm :public JZCmdParamHandler{
 public:
 	myCmdParm (){};
@@ -53,10 +61,15 @@ int main(int argc,char* argv[])
 	JZSetLogFileName("testLog");
 	myCmdParm parm;
 	parm.analyze(argc, argv);
-	JZWRITE_DEBUG("hello//abce at line : %d\n \
-					this is add on %c",\
-			__LINE__ == 1, 'a');
-	JZWRITE_DEBUG("hello");
+	
+	JZWRITE_DEBUG("hellon");
+	string testInput = "";
+	for (int i = 0; i < 10000; i++) {
+		JZWRITE_DEBUG("the i is : %d", i);
+		testInput += 'a';
+		JZWRITE_DEBUG(testInput.c_str());
+	}
+	
 }
 
 
