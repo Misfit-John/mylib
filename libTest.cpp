@@ -69,7 +69,7 @@ int main(int argc,char* argv[])
 		testInput += 'a';
 		JZWRITE_DEBUG(testInput.c_str());
 	}
-	
+	a +	=3;
 }
 
 
