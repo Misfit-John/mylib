@@ -1,10 +1,12 @@
-#include "JZLogger.h"
-#include "JZFileUtil.h"
-#include "JZMarcoFunc.h"
+#   include "JZLogger.h"
+#   include "JZFileUtil.h"
+#   include "JZMarcoFunc.h"
 #include "JZCmdParamHandler.h"
 #include <sstream>
 using namespace std;
 
+# if 1
+# endif
 struct mapStr
 {
 	int a;
@@ -62,14 +64,6 @@ int main(int argc,char* argv[])
 	myCmdParm parm;
 	parm.analyze(argc, argv);
 	
-	JZWRITE_DEBUG("hellon");
-	string testInput = "";
-	for (int i = 0; i < 10000; i++) {
-		JZWRITE_DEBUG("the i is : %d", i);
-		testInput += 'a';
-		JZWRITE_DEBUG(testInput.c_str());
-	}
-	a +	=3;
 }
 
 
