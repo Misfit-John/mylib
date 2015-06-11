@@ -22,25 +22,24 @@ OBJS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(SOURCES)))
 HEADERS=$(wildcard ./header/*.h)
 
 $(TARGET):$(OBJS) 
-	@echo "make target"
+	@echo "============ make target ============="
 	$(AR) -r $(TARGET) $(OBJS) 
 
 test:$(TARGET) libTest.o
-	@echo "make test"
+	@echo "============ make test ==============="
 	$(CXX) libTest.o $(TARGET) $(INCLUDE_FLAGS) $(CPP_FLAG) $(PLATFORM_FLAG) -o tester
 
 release:clean makefile
-	@echo "release:"
-	make debug_var=0	
+	@echo "============ release ================="
+	make debug_var=0
 
 depend:$(SOURCES) $(HEADERS)
-	@echo "now generat dpend";
+	@echo "============ now generat dpend ======="
 	-@sh depend_generator.sh "$(CPPFLAGS)" > /dev/null
-	@echo "generat dpend fin"
 
 clean:
-	@echo "now clean";
-	-rm $(TARGET);
+	@echo "============ now clean ==============="
+	-rm $(TARGET)
 	-rm $(OBJS)
 
-include depend
+-include depend

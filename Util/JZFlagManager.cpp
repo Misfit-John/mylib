@@ -27,6 +27,7 @@ bool JZFlagManager::setFlag(int flag, int state)
 		return false;
 	}
 	mFlagList[flag] = state;
+	return true;
 }
 
 bool JZFlagManager::resetFlag(int flag)
@@ -37,6 +38,7 @@ bool JZFlagManager::resetFlag(int flag)
 	}
 
 	mFlagList[flag] = 0;
+	return true;
 }
 
 bool JZFlagManager::canSetFlagToState(int flag, int state)
