@@ -35,11 +35,14 @@ release:clean makefile
 
 depend:$(SOURCES) $(HEADERS)
 	@echo "============ now generat dpend ======="
+	-rm depend
 	-@sh depend_generator.sh "$(CPPFLAGS)" > /dev/null
 
 clean:
 	@echo "============ now clean ==============="
 	-rm $(TARGET)
 	-rm $(OBJS)
+	-rm depend
 
 -include depend
+

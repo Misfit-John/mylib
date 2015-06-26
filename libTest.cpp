@@ -1,6 +1,6 @@
 #   include "JZLogger.h"
 #   include "JZFileUtil.h"
-#   include "JZMarcoFunc.h"
+#   include "JZMacroFunc.h"
 #include "JZCmdParamHandler.h"
 #include <sstream>
 using namespace std;

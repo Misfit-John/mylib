@@ -1,6 +1,6 @@
 #include "JZCmdParamHandler.h"
 #include "JZLogger.h"
-#include "JZMarcoFunc.h"
+#include "JZMacroFunc.h"
 #include <stdio.h>
 #include <unistd.h>
 
