@@ -63,7 +63,7 @@ string JZGetFileDirectory(const char* fileFullPath)
 	return ret;
 }
 
-unsigned char* JZGetFileData(const char* fileFullPath)
+unsigned char* JZGetFileData(const char* fileFullPath, uint64* buffSize)
 {
 	//this func only useful for linux,os x, window,ios
 	//but android system will fail to read assets' file,
@@ -78,10 +78,11 @@ unsigned char* JZGetFileData(const char* fileFullPath)
 	fseek(filePtr, 0, SEEK_END);
 	fileSize = ftell(filePtr);
 	fseek(filePtr, 0, SEEK_SET);
-	unsigned char *ret = (unsigned char*)malloc(fileSize * sizeof(char) + 1);
-
+	unsigned char *ret = (unsigned char*)malloc(fileSize * sizeof(char));
 	fread(ret, 1, fileSize, filePtr);
 	fclose(filePtr);
+
+	*buffSize = fileSize;
 	return ret;
 }
 
