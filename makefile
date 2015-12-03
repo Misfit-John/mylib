@@ -17,7 +17,7 @@ TARGET=mylib.a
 CFLAGS=$(PLATFORM_FLAG) $(INCLUDE_FLAGS)
 CPPFLAGS=$(PLATFORM_FLAG) $(INCLUDE_FLAGS) $(CPP_FLAG)
 
-SOURCES=$(wildcard ./*/*.c ./*/*.cpp)
+SOURCES=$(wildcard ./src/*/*.c ./src/*/*.cpp)
 OBJS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(SOURCES)))
 HEADERS=$(wildcard ./header/*.h)
 
