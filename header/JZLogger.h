@@ -19,8 +19,9 @@
 #define JZ_LOG_DEBUG (0x1)
 #define JZ_LOG_ERROR (0x2)
 #define JZ_LOG_TRACE (0x4)
+#define JZ_LOG_TEST (0x8)
 
-#define JZ_LOG_ALL (JZ_LOG_ERROR|JZ_LOG_DEBUG|JZ_LOG_TRACE)
+#define JZ_LOG_ALL (JZ_LOG_ERROR|JZ_LOG_DEBUG|JZ_LOG_TRACE|JZ_LOG_TEST)
 
 
 void JZLoggerInit();
@@ -36,6 +37,21 @@ int JZGetDebugLevel();
 void JZWriteLog(const char* log);
 
 #ifdef DEBUG
+#define JZWRITE_TEST(format, args...) {\
+		if(JZGetDebugLevel() & JZ_LOG_TEST)\
+		{\
+			char logWord[900];\
+			char log[1024];\
+			time_t timep;\
+			struct tm *p;\
+			time(&timep);\
+			p = gmtime(&timep);\
+			sprintf(logWord,format,##args);\
+			sprintf(log,"[DEBUG][%d-%d-%d,%d:%d:%d][%s:%d][%s]:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
+			JZWriteLog(log);		\
+		}		\
+}
+
 #define JZWRITE_DEBUG(format, args...) {\
 		if(JZGetDebugLevel() & JZ_LOG_DEBUG)\
 		{\
@@ -74,11 +90,13 @@ void JZWriteLog(const char* log);
 			JZWriteLog(log);		\
 		}		\
 }
+
 #else	//DEBUG
 
-#define JZWRITE_DEBUG {do{}while(0);}
+#define JZWRITE_DEBUG(format, args...) {do{}while(0);}
 #define JZFUNC_BEGIN_LOG() {do{}while(0);}
 #define JZFUNC_END_LOG() {do{}while(0);}
+#define JZWRITE_TEST(format, args...) {do{}while(0);}
 
 #endif //DEBUG
 
