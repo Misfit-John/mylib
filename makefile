@@ -13,21 +13,25 @@ PLATFORM_FLAG=-D_LINUX_ $(DEBUG_FLAG)
 INCLUDE_FLAGS=-I./header 
 CPP_FLAG=--std=c++0x
 TARGET=mylib.a
+TEST_FLAG=-isystem ./test/include
+TEST_LIB=test/libtest.a
 
 CFLAGS=$(PLATFORM_FLAG) $(INCLUDE_FLAGS)
 CPPFLAGS=$(PLATFORM_FLAG) $(INCLUDE_FLAGS) $(CPP_FLAG)
 
-SOURCES=$(wildcard ./src/*/*.c ./src/*/*.cpp)
+SOURCES=$(wildcard ./src/*/*.c ./src/*/*.cpp ./src/*.c ./src/*.cpp)
 OBJS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(SOURCES)))
 HEADERS=$(wildcard ./header/*.h)
+TEST_SOURCES=$(wildcard ./test/src/*.c ./test/src/*.cpp ./test/src/*/*.c ./test/src/*/*.cpp)
 
 $(TARGET):$(OBJS) 
 	@echo "============ make target ============="
 	$(AR) -r $(TARGET) $(OBJS) 
 
-test:$(TARGET) libTest.o
+test:$(TARGET) $(TEST_LIB) $(TEST_SOURCES)
 	@echo "============ make test ==============="
-	$(CXX) libTest.o $(TARGET) $(INCLUDE_FLAGS) $(CPP_FLAG) $(PLATFORM_FLAG) -o tester
+	$(CXX) $(TARGET) $(TEST_LIB) $(INCLUDE_FLAGS) $(CPP_FLAG) $(PLATFORM_FLAG) $(TEST_SOURCES) $(TEST_FLAG) -o ./test/tester
+	./test/tester
 
 release:clean makefile
 	@echo "============ release ================="
