@@ -22,5 +22,5 @@ gen_depend()
 	done
 }
 
-gen_depend "."
+gen_depend "./src"
 
