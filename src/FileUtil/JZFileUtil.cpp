@@ -1,18 +1,66 @@
 #include "JZFileUtil.h"
 #include "JZCommonDefine.h"
+#include "JZLogger.h"
 #include <stdlib.h>
-#include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
 
+#ifdef _LINUX_
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/dir.h>
+#include <sys/stat.h> 
+#include <dirent.h>  
+#endif
+
+StringList JZGetAllFiles(const char* dir, bool deepSearch)
+{
+#ifdef _LINUX_
+  // I didn't find any good idea to do this by std c lib. So I will have to call system api to do this now.
+  DIR *dp = NULL;  
+  struct dirent *entry = NULL;  
+  struct stat statbuf; 
+  StringList ret;
+
+  if ((dp = opendir(dir)) == NULL) {  
+    JZWRITE_DEBUG("can not open dir");
+    return ret;  
+  }
+
+  chdir(dir);
+  while ((entry = readdir(dp)) != NULL) {  
+    lstat(entry->d_name, &statbuf);  
+    if (S_ISDIR(statbuf.st_mode)) 
+    {  
+      if (deepSearch)
+      {
+        if (strcmp(entry->d_name, ".") == 0 ||   
+            strcmp(entry->d_name, "..") == 0 )    
+          continue;     
+        StringList deepRet = JZGetAllFiles(entry->d_name, deepSearch);
+        ret.insert(ret.end(), deepRet.begin(), deepRet.end());
+      }
+    }
+    else
+    {
+      ret.push_back(entry->d_name);
+    }
+  }  
+  chdir("..");
+  closedir(dp);
+  return ret;
+#endif
+
+}
+
 string JZGetCurrentWorkingPath()
 {
-	char buff[512] = {0};
-	string ret = "";
-	getcwd(buff, sizeof(buff));
-	ret = buff;
-	return ret;
+  char buff[512] = {0};
+  string ret = "";
+  getcwd(buff, sizeof(buff));
+  ret = buff;
+  return ret;
 }
 
 string JZGetAbsolutePath(const char* toResolvePath)

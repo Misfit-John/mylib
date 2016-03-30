@@ -17,4 +17,6 @@ unsigned char* JZGetFileData(const char* fileFullPath, uint64 *buffSize);
 
 bool JZFileAccessable(const char* filePath);
 
+StringList JZGetAllFiles(const char* filePath, bool deepSearch);
+
 #endif //__JZ_FILE_UTIL_H__
