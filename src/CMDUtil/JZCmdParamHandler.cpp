@@ -51,7 +51,7 @@ bool JZCmdParamHandler::registerOptVarArgHandlerPtr(char opt, OptArgHandlerPtr p
 	return true;
 }
 */
-void JZCmdParamHandler::analyze(int argc, char *argv[])
+void JZCmdParamHandler::analyze(int argc,char *const argv[])
 {
 	init();
 	char opt;

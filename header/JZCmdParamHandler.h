@@ -20,7 +20,7 @@ public:
 	virtual ~JZCmdParamHandler (){};
 
 	virtual void init() = 0;
-	void analyze(int argc, char *argv[]);
+	void analyze(int argc,char * const argv[]);
 
 protected:
 	bool registerUnknowOptHandler(UnknowOptHandlerPtr ptr);
