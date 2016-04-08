@@ -47,7 +47,7 @@ void JZWriteLog(const char* log);
 			time(&timep);\
 			p = gmtime(&timep);\
 			sprintf(logWord,format,##args);\
-			sprintf(log,"[DEBUG][%d-%d-%d,%d:%d:%d][%s:%d][%s]:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
+			sprintf(log,"[TEST][%d-%d-%d,%d:%d:%d][%s:%d][%s]:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
 			JZWriteLog(log);		\
 		}		\
 }
