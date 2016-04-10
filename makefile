@@ -1,7 +1,7 @@
 #don't indent!
 debug_var=1
 ifeq ($(debug_var),1)
-DEBUG_FLAG=-g -DDEBUG
+DEBUG_FLAG=-g -DDEBUG -fno-pie
 else
 DEBUG_FLAG=-DRELEASE
 endif
