@@ -30,8 +30,8 @@ $(TARGET):$(OBJS)
 
 test:$(TARGET) $(TEST_LIB) $(TEST_SOURCES)
 	@echo "============ make test ==============="
-	$(CXX) $(TARGET) $(TEST_LIB) $(INCLUDE_FLAGS) $(CPP_FLAG) $(PLATFORM_FLAG) $(TEST_SOURCES) $(TEST_FLAG) -o ./test/tester
-	./test/tester
+	$(CXX) $(TARGET) $(TEST_LIB) $(INCLUDE_FLAGS) $(CPP_FLAG) $(PLATFORM_FLAG) $(TEST_SOURCES) $(TEST_FLAG) -o ./target/tester
+	./target/tester
 
 release:clean makefile
 	@echo "============ release ================="
