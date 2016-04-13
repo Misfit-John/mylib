@@ -11,7 +11,7 @@ CXX=clang++
 AR=ar
 PLATFORM_FLAG=-D_LINUX_ $(DEBUG_FLAG) 
 INCLUDE_FLAGS=-I./header 
-CPP_FLAG=--std=c++0x
+CPP_FLAG=--std=c++11
 TARGET=mylib.a
 TEST_FLAG=-isystem ./test/include
 TEST_LIB=test/libtest.a
