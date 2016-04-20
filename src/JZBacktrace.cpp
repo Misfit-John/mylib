@@ -35,7 +35,7 @@ inline void printStackTrace(int signum, FILE *out = stdout, unsigned int max_fra
 
 void abortHandler( int signum )
 {
-  if (NULL == outputFile)
+  if (NULL != outputFile)
   {
     printStackTrace(signum,outputFile);
   }
@@ -53,7 +53,7 @@ void setDumpFileName(const char* fileName)
   {
     return;
   }
-  outputFile = fopen(fileName, "a+");
+//  outputFile = fopen(fileName, "a+");
 }
 
 void JZInitStackTrace()
