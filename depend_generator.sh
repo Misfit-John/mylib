@@ -23,4 +23,4 @@ gen_depend()
 }
 
 gen_depend "./src"
-
+gen_depend "./test"
