@@ -1,7 +1,7 @@
 #don't indent!
 debug_var=1
 ifeq ($(debug_var),1)
-RELEASE_FLAG=-DDEBUG -g -fno-pie -fprofile-arcs -ftest-coverage
+RELEASE_FLAG=-DDEBUG -g -fprofile-arcs -ftest-coverage
 else
 RELEASE_FLAG=-DRELEASE
 endif
