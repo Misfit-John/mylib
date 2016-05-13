@@ -6,8 +6,8 @@ else
 RELEASE_FLAG=-DRELEASE
 endif
 
-CC=clang
-CXX=clang++
+#CC=clang
+#CXX=clang++
 AR=ar
 PLATFORM_FLAG=-D_LINUX_ $(RELEASE_FLAG) 
 INCLUDE_FLAGS=-I./header 
