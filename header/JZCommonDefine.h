@@ -29,7 +29,7 @@ typedef std::stack<int> IntStack;
 	#define DIR_SEPERATOR "/"
 	#define ENV_SEPERATOR ";"
 #elif defined(_WIN_)
-	#define DIR_SEPERATOR "\"	
+	#define DIR_SEPERATOR "\\"	
 	#define ENV_SEPERATOR ":"
 #endif
 
