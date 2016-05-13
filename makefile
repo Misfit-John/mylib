@@ -11,7 +11,7 @@ endif
 AR=ar
 PLATFORM_FLAG=-D_LINUX_ $(RELEASE_FLAG) 
 INCLUDE_FLAGS=-I./header 
-CPP_FLAG=--std=c++11
+CPP_FLAG=--std=c++0x
 TARGET=mylib.a
 TEST_FLAG=-isystem ./test/include
 TEST_LIB=test/libtest.a
