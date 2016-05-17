@@ -23,7 +23,7 @@ SOURCES=$(wildcard ./src/*/*.c ./src/*/*.cpp ./src/*.c ./src/*.cpp)
 OBJS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(SOURCES)))
 HEADERS=$(wildcard ./header/*.h)
 TEST_SOURCES=$(wildcard ./test/src/*.c ./test/src/*.cpp ./test/src/*/*.c ./test/src/*/*.cpp)
-TEST_OBJECTS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(TEST_SOURCE)))
+TEST_OBJECTS=$(patsubst %.c, %.o,$(patsubst %.cpp,%.o,$(TEST_SOURCES)))
 
 $(TARGET):$(OBJS) 
 	@echo "============ make target ============="
