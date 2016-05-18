@@ -22,6 +22,19 @@
 #define JZ_LOG_TEST (0x8)
 
 #define JZ_LOG_ALL (JZ_LOG_ERROR|JZ_LOG_DEBUG|JZ_LOG_TRACE|JZ_LOG_TEST)
+
+void JZLoggerInit();
+void JZLoggerFin();
+
+void JZSetLoggerLevel(int level);
+void JZSetLoggerOutPutStatue(int toConsole, int toFile);
+void JZSetLogFileName(const char* filename);
+
+int JZGetDebugLevel();
+
+//hidden function
+void JZWriteLog(const char* log);
+
 /*********************************************************
 red='\e[0;31m'
 RED='\e[1;31m'
@@ -36,20 +49,6 @@ YELLOW='\e[1;33m'
 NC='\e[0m' 
  ********************************************************/
 
-
-
-void JZLoggerInit();
-void JZLoggerFin();
-
-void JZSetLoggerLevel(int level);
-void JZSetLoggerOutPutStatue(int toConsole, int toFile);
-void JZSetLogFileName(const char* filename);
-
-int JZGetDebugLevel();
-
-//hidden function
-void JZWriteLog(const char* log);
-
 #ifdef DEBUG
 #define JZWRITE_TEST(format, args...) {\
 		if(JZGetDebugLevel() & JZ_LOG_TEST)\
@@ -61,7 +60,7 @@ void JZWriteLog(const char* log);
 			time(&timep);\
 			p = gmtime(&timep);\
 			sprintf(logWord,format,##args);\
-			sprintf(log,"[TEST][%d-%d-%d,%d:%d:%d][%s:%d][%s]:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
+			sprintf(log,"\e[0;32m[TEST]\x1B[0m[%d-%d-%d,%d:%d:%d]\x1b[38;251;211m[%s:%d][%s]\x1b[0m:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
 			JZWriteLog(log);		\
 		}		\
 }
@@ -76,7 +75,7 @@ void JZWriteLog(const char* log);
 			time(&timep);\
 			p = gmtime(&timep);\
 			sprintf(logWord,format,##args);\
-			sprintf(log,"\x1B[1;31m[DEBUG][%d-%d-%d,%d:%d:%d][%s:%d][%s]\x1b[0m:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
+			sprintf(log,"\x1B[1;33m[DEBUG]\x1b[0m[%d-%d-%d,%d:%d:%d]\e[38;5;211m[%s:%d][%s]\x1b[0m:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
 			JZWriteLog(log);		\
 		}		\
 }
@@ -88,7 +87,7 @@ void JZWriteLog(const char* log);
 			struct tm *p;\
 			time(&timep);\
 			p = gmtime(&timep);\
-			sprintf(log,"\x1B[1;31m[TRACE][%d-%d-%d,%d:%d:%d][%s:%d][%s]\x1B[0m:BEGIN\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__);\
+			sprintf(log,"\e[0;34m[TRACE]\x1b[0m[%d-%d-%d,%d:%d:%d]\e[38;5;151m[%s:%d][%s]\x1b[0m:\e[38;5;11mBEGIN\x1b[0m\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__);\
 			JZWriteLog(log);		\
 		}		\
 }
@@ -100,7 +99,7 @@ void JZWriteLog(const char* log);
 			struct tm *p;\
 			time(&timep);\
 			p = gmtime(&timep);\
-			sprintf(log,"[TRACE][%d-%d-%d,%d:%d:%d][%s:%d][%s]:END\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__);\
+			sprintf(log,"\e[0;34m[TRACE]\x1b[0m[%d-%d-%d,%d:%d:%d]\e[38;5;101m[%s:%d][%s]\x1b[0m:\e[0;36mEND\x1b[0m\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8 ) % 24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__);\
 			JZWriteLog(log);		\
 		}		\
 }
@@ -125,7 +124,7 @@ void JZWriteLog(const char* log);
 			p = gmtime(&timep);\
 			sprintf(logWord,format,##args);\
 			sprintf(logWord,format,##args);\
-			sprintf(log,"[ERROR][%d-%d-%d,%d:%d:%d][%s:%d][%s]:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8) %24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
+			sprintf(log,"\x1B[1;31m[ERROR]\x1b[0m[%d-%d-%d,%d:%d:%d]\e[38;5;51m[%s:%d][%s]\x1b[0m:\n%s\n",p->tm_year + 1900 ,p->tm_mon + 1,p->tm_mday,(p->tm_hour + 8) %24,p->tm_min,p->tm_sec,__FILE__,__LINE__,__func__,logWord);\
 			JZWriteLog(log);		\
 		}		\
 }
