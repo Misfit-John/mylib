@@ -2,9 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "JZMacroFunc.h"
 
-FILE* mJZLoggerFILEPtr;
-char* mJZLoggerFilePath;
+FILE* mJZLoggerFILEPtr = NULL;
+char* mJZLoggerFilePath = NULL;
 int mJZLogLevel;
 int mJZLogIsToConsel;
 int mJZLogIsToFile;
@@ -52,6 +53,10 @@ void JZSetLogFileName(const char* filename)
 	if (NULL == filename) {
 		return;
 	}
+  else
+  {
+    JZSAFE_DELETE(mJZLoggerFilePath)
+  }
 	int fileNameLen = strlen(filename);
 	mJZLoggerFilePath = (char*)malloc(fileNameLen * sizeof(char));
 	strncpy(mJZLoggerFilePath, filename, fileNameLen);
